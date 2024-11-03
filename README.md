@@ -1,4 +1,4 @@
-### Hello proffessor An, find instructions to install the game below
+### Hello Professor An, find instructions to install the game below.
 
 ## Build Requirements
 - CMake (version 3.0 or higher)
