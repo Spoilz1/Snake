@@ -228,6 +228,7 @@ void Game::Update() {
         }
     }
     if (collisions()) {
+        playWavInThread("../include/lose.wav"); 
         endGame();
     }
 }
