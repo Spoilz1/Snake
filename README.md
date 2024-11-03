@@ -1,4 +1,4 @@
-# Instructions
+# Hello Professor An, see the instructions below:
 
 ## Build Requirements
 - CMake (version 3.0 or higher)
