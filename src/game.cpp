@@ -16,6 +16,12 @@ bool Game::Initialize(const char* title, int xpos, int ypos, bool fullscreen) {
         std::cerr << "Could not initialize audio: " << SDL_GetError() << std::endl;
         return false;
     }
+    if (screen_height % GRIDSIZE != 0) {
+        screen_height -= (screen_height%GRIDSIZE);
+    }
+    if (screen_width % GRIDSIZE != 0) { 
+        screen_width -= (screen_width%GRIDSIZE);
+    }
 
 
     SDL_AudioSpec wavSpec;
