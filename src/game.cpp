@@ -467,7 +467,7 @@ bool Game::collisions() {
             snakeBody[0].yPos >= apple.yPos - tolerance && 
             snakeBody[0].yPos <= apple.yPos + tolerance) {
             score++; 
-            playWavInThread("../include/turn.wav"); 
+            playWavInThread("../include/eat.wav"); 
             addApple(); 
             addSnake();
             
