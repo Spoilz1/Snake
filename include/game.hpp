@@ -75,6 +75,7 @@ public:
     bool IsRunning();
     void Update();
     void sleep(int);
+    bool isPaused(); 
     
 private:  
     // Audio handling
@@ -110,6 +111,8 @@ private:
                      Uint8 hoverR, Uint8 hoverG, Uint8 hoverB);
 
     // Game state
+    void togglePause();
+    bool paused = false;
     bool isRunning;
     bool gameOver;
     int score = 0;
