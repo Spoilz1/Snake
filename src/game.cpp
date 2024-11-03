@@ -281,6 +281,14 @@ void Game::Clean() {
 }
 
 // Game State Management
+
+bool Game::isPaused() { 
+    return paused; 
+}
+void Game::togglePause() { 
+    paused = !paused; 
+}
+
 void Game::resetGame() {
     score = 0;
     snakeLength = 1;
