@@ -721,22 +721,6 @@ void Game::drawSnakeConnector(int i) {
     
     SDL_SetRenderDrawColor(renderer, 0, greenIntensity, blueIntensity, 255);
     
-    if (currentDir == prevDir) {
-        if (currentDir == "UP" || currentDir == "DOWN") {
-            if (curX != prevX) {
-                drawLine(curX, curY, prevX, prevY);  // Left edge
-                drawLine(curX + GRIDSIZE, curY, prevX + GRIDSIZE, prevY);  // Right edge
-            }
-        }
-        else if (currentDir == "LEFT" || currentDir == "RIGHT") {
-            if (curY != prevY) {
-                drawLine(curX, curY, prevX, prevY);  // Top edge
-                drawLine(curX, curY + GRIDSIZE, prevX, prevY + GRIDSIZE);  // Bottom edge
-            }
-        }
-        return;
-    }
-    
     if (prevDir == "DOWN") {
         if (currentDir == "LEFT") {
             if (curY != prevY) {
