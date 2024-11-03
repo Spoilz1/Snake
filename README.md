@@ -6,7 +6,7 @@
 - Make utility
 - Homebrew package manager (macOS)
 
-## Setup Steps (in root path)
+## Setup Steps (in projects root path)
 
 1. Install required packages from requirements.txt:
    ```bash
