@@ -17,7 +17,7 @@ bool Game::Initialize(const char* title, int xpos, int ypos, bool fullscreen) {
         return false;
     }
 
-    // Configure the desired audio specs and open the device once here.
+
     SDL_AudioSpec wavSpec;
     wavSpec.freq = 44100; // Sample rate
     wavSpec.format = AUDIO_S16SYS; // Format
