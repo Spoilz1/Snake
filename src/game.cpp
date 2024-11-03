@@ -344,9 +344,6 @@ void Game::sleep(int ms) {
     bool at_bottom_edge = (snakeBody[0].yPos >= screen_height - GRIDSIZE);
     bool near_edge = at_right_edge || at_left_edge || at_top_edge || at_bottom_edge;
 
-    std::cout << "Near edge: " << near_edge << std::endl;
-    std::cout << "Position: " << snakeBody[0].xPos << ", " << snakeBody[0].yPos << std::endl;
-    
     if (!near_edge) {  // Use priority system when not near edge
         if (moving_vertical) {
             if (left && current_direction != "RIGHT") {
