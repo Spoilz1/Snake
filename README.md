@@ -1,4 +1,4 @@
-# Install instructions
+# Instructions
 
 ## Build Requirements
 - CMake (version 3.0 or higher)
