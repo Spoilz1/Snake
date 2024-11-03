@@ -223,7 +223,9 @@ void Game::Update() {
             snakeBody[i].yPos = ((snakeBody[i].yPos + GRIDSIZE/2) / GRIDSIZE) * GRIDSIZE;
         }
     }
-    if (collisions()) endGame();
+    if (collisions()) {
+        endGame();
+    }
 }
 
 void Game::Render() {
@@ -290,6 +292,7 @@ void Game::togglePause() {
 }
 
 void Game::resetGame() {
+    paused = false;
     score = 0;
     snakeLength = 1;
     gameOver = false;
@@ -305,6 +308,7 @@ void Game::resetGame() {
 }
 
 void Game::endGame() { 
+    togglePause();
     playWavInThread("../include/lose.wav"); 
     gameOver = true;
 }
