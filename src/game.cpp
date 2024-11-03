@@ -884,6 +884,7 @@ void Game::playWav(const char* filename) {
         SDL_PauseAudioDevice(audioDevice, 0);
 
         // Calculate duration in milliseconds
+        //Calculate duration in milliseconds
         float duration = (float)wavLength / (wavSpec.freq * wavSpec.channels * (SDL_AUDIO_BITSIZE(wavSpec.format) / 8));
         int delayMs = (int)(duration * 1000);
 
