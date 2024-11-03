@@ -5,10 +5,11 @@
 - C++ compiler
 - Make utility
 
-## Build Steps
+## Build Steps (in the root folder)
 
 1. Create and enter build directory:
    ```bash
+   mkdir build
    cd build
    ```
 
