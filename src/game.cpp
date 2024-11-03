@@ -16,10 +16,6 @@ bool Game::Initialize(const char* title, int xpos, int ypos, bool fullscreen) {
         std::cerr << "Could not initialize audio: " << SDL_GetError() << std::endl;
         return false;
     }
-    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-        std::cerr << "Could not initialize audio: " << SDL_GetError() << std::endl;
-        return false;
-    }
 
     // Configure the desired audio specs and open the device once here.
     SDL_AudioSpec wavSpec;
@@ -227,10 +223,7 @@ void Game::Update() {
             snakeBody[i].yPos = ((snakeBody[i].yPos + GRIDSIZE/2) / GRIDSIZE) * GRIDSIZE;
         }
     }
-    if (collisions()) {
-        playWavInThread("../include/lose.wav"); 
-        endGame();
-    }
+    if (collisions()) endGame();
 }
 
 void Game::Render() {
