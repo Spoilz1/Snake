@@ -297,6 +297,7 @@ void Game::resetGame() {
 }
 
 void Game::endGame() { 
+    playWavInThread("../include/lose.wav"); 
     gameOver = true;
 }
 
