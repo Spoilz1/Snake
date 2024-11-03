@@ -9,8 +9,8 @@ int main(int argc, char* argv[]) {
         game.HandleEvents();
         if(!game.isPaused()) { 
             game.Update();
-            game.Render();
         }
+        game.Render();
         game.sleep(16);
     }
     
