@@ -25,7 +25,6 @@ bool Game::collisions() {
         score++;
         playWavInThread("../assets/eat.wav");
         addApple();
-        addSnake();
     }
 
     // Check win condition
