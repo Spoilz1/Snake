@@ -1,34 +1,20 @@
 cmake_minimum_required(VERSION 3.10)
 project(GameProject)
 
-# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# MacOS specific setup
 if(APPLE)
-    # Set SDL2 paths explicitly for Homebrew
-    set(SDL2_PATH "/opt/homebrew/Cellar/sdl2/2.30.9")
-    set(SDL2_INCLUDE_DIR "${SDL2_PATH}/include")
-    set(SDL2_LIBRARY "${SDL2_PATH}/lib/libSDL2.dylib")
-
-    include_directories(
-        ${SDL2_INCLUDE_DIR}
-        "/opt/homebrew/include"
-    )
+    include(FindPkgConfig)
+    pkg_check_modules(SDL2 REQUIRED sdl2)
 else()
     find_package(SDL2 REQUIRED)
     find_package(OpenGL REQUIRED)
-    include_directories(
-        ${SDL2_INCLUDE_DIRS}
-        ${OPENGL_INCLUDE_DIRS}
-    )
 endif()
 
-# Source files
-set(SOURCE_FILES 
+add_executable(game
     src/audio/AudioManager.cpp 
-    src/core/collisionHandler 
+    src/core/collisionHandler.cpp  
     src/core/eventsHandler.cpp 
     src/core/Game.cpp 
     src/core/GameState.cpp 
@@ -46,18 +32,16 @@ set(SOURCE_FILES
     src/utils/snakeUtils.cpp
 )
 
-# Add executable
-add_executable(game ${SOURCE_FILES})
+target_include_directories(game PRIVATE ${SDL2_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
 
-# Link libraries
 if(APPLE)
-    target_link_libraries(game 
-        ${SDL2_LIBRARY}
+    target_link_libraries(game PRIVATE
+        ${SDL2_LIBRARIES}
         "-framework OpenGL"
         "-framework Cocoa"
     )
 else()
-    target_link_libraries(game
+    target_link_libraries(game PRIVATE
         SDL2
         ${OPENGL_LIBRARIES}
     )
