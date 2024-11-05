@@ -16,7 +16,6 @@ void Game::Render() {
     // Initialize if needed
     if (snakeLength == 1) { 
         addApple();
-        addSnake();
     }
 
     // Render apple with anti-aliased edges
