@@ -125,12 +125,10 @@ public:
     
 private:  
 
-    // Add these new members:
     SDL_Texture* appleTexture = nullptr;
     SDL_Texture* stemAndLeafTexture = nullptr;
     bool texturesInitialized = false;
     
-    // Add these new methods:
     void initializeTextures();
     void createAppleTexture();
     void createStemAndLeafTexture();
@@ -175,9 +173,7 @@ private:
     float deltaTime;
     const float TARGET_DELTA_TIME = 1.0f / 60.0f;  
     const float BASE_MOVE_SPEED = 400.0f;          
-    Uint32 lastTurnTime = 0;
-    float dt;
-    float LastTime;
+    
 
     // Game state
     void togglePause();
