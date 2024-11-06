@@ -12,9 +12,9 @@ bool Game::collisions() {
     }
 
     // Check collision with self (snake body)
-    for (int i = 1; i < snakeLength; ++i) {
-        if (std::abs(snakeBody[0].xPos - snakeBody[i].xPos) <= tolerance &&
-            std::abs(snakeBody[0].yPos - snakeBody[i].yPos) <= tolerance) {
+    for (int i = 2; i < snakeLength; ++i) {
+        if (std::abs(snakeBody[1].xPos - snakeBody[i].xPos) <= tolerance &&
+            std::abs(snakeBody[1].yPos - snakeBody[i].yPos) <= tolerance) {
             return true;  // Collision detected
         }
     }
