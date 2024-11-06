@@ -112,49 +112,50 @@ void Game::createAppleTexture() {
 }
 
 void Game::createStemAndLeafTexture() {
-    // Similar process for stem and leaf, but in a separate texture
-    const int textureSize = 32; // Smaller texture for stem/leaf
+    const int textureSize = 64; // Increased to match apple size
     SDL_Surface* surface = SDL_CreateRGBSurface(0, textureSize, textureSize, 32,
         0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF);
     
     SDL_LockSurface(surface);
     Uint32* pixels = static_cast<Uint32*>(surface->pixels);
     
-    // Pre-render stem and leaf
     const float centerX = textureSize / 2.0f;
-    const float stemWidth = textureSize * 0.2f;
+    const float stemWidth = textureSize * 0.3f;  // Increased width
     const float stemHeight = textureSize * 0.8f;
     
     for (int y = 0; y < textureSize; y++) {
         for (int x = 0; x < textureSize; x++) {
             // Render stem
             const float dx = (x - centerX);
-            const float dy = y - (textureSize * 0.2f);
+            const float dy = y - (textureSize * 0.1f);  // Reduced offset
             const float stem_dist = std::abs(dx) / (stemWidth * 0.5f);
             
             if (stem_dist <= 1.0f && dy >= 0 && dy <= stemHeight) {
                 const float alpha = 1.0f - std::pow(stem_dist, 2.0f);
-                pixels[y * surface->pitch/4 + x] = 
-                    (static_cast<Uint8>(255 * alpha) << 24) | 
-                    (33 << 16) | (67 << 8) | 101; // Brown color
+                pixels[y * surface->pitch/4 + x] =
+                    (101 << 24) |    // R (brown)
+                    (67 << 16) |     // G
+                    (33 << 8) |      // B
+                    static_cast<Uint8>(255 * alpha);  // A
             }
             
             // Add leaf
-            const float leaf_dx = dx - stemWidth;
+            const float leaf_dx = dx - stemWidth * 0.3f;  // Adjusted leaf position
             const float leaf_dy = dy - stemHeight * 0.3f;
             const float leaf_dist = std::sqrt(leaf_dx*leaf_dx + leaf_dy*leaf_dy) / (stemWidth * 2.0f);
             
             if (leaf_dist <= 1.0f) {
                 const float alpha = 1.0f - std::pow(leaf_dist, 2.0f);
-                pixels[y * surface->pitch/4 + x] = 
-                    (static_cast<Uint8>(255 * alpha) << 24) | 
-                    (34 << 16) | (139 << 8) | 34; // Green color
+                pixels[y * surface->pitch/4 + x] =
+                    (34 << 24) |     // R (green)
+                    (139 << 16) |    // G
+                    (34 << 8) |      // B
+                    static_cast<Uint8>(255 * alpha);  // A
             }
         }
     }
     
     SDL_UnlockSurface(surface);
-    
     stemAndLeafTexture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     SDL_SetTextureBlendMode(stemAndLeafTexture, SDL_BLENDMODE_BLEND);
