@@ -38,9 +38,39 @@ void Game::Update() {
 
 // Snake direction update
 void Game::updateSnakeDirection(Direction new_direction) {
+
     if (snakeBody[0].direction != new_direction) {
         snakeBody[0].queue_direction = new_direction;
-    }
+
+        if (abs(snakeBody[1].xPos - snakeBody[1].last_x) >= GRIDSIZE/1.5 || abs(snakeBody[1].yPos - snakeBody[1].last_y) >= GRIDSIZE/1.5) {
+            switch (new_direction) {
+                case Direction::DOWN:
+                    snakeBody[0].xPos = snakeBody[0].last_x;
+                    snakeBody[0].yPos = snakeBody[1].yPos + GRIDSIZE;
+                    snakeBody[0].direction = new_direction;
+                    break;
+                
+                case Direction::UP:
+                    snakeBody[0].xPos = snakeBody[0].last_x;
+                    snakeBody[0].yPos = snakeBody[1].yPos - GRIDSIZE;
+                    snakeBody[0].direction = new_direction;
+                    break;
+                
+                case Direction::LEFT:
+                    snakeBody[0].yPos = snakeBody[0].last_y;
+                    snakeBody[0].xPos = snakeBody[1].xPos - GRIDSIZE;
+                    snakeBody[0].direction = new_direction;
+                    break;
+                
+                case Direction::RIGHT:
+                    snakeBody[0].yPos = snakeBody[0].last_y;
+                    snakeBody[0].xPos = snakeBody[1].xPos + GRIDSIZE;
+                    snakeBody[0].direction = new_direction;
+                    break;
+            }
+        }
+
+    } 
 }
 
 // Frame speed calculation
