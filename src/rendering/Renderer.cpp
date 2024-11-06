@@ -203,8 +203,8 @@ void Game::Render() {
     };
     SDL_RenderCopy(renderer, stemAndLeafTexture, NULL, &stemRect);
 
-    // Render snake (existing code)
-    for (int i = 0; i < snakeLength; i++) {
+    // Render snake
+    for (int i = 1; i < snakeLength; i++) {
         const float gradientPosition = static_cast<float>(i) / (snakeLength * gradientSteps);
         const int greenIntensity = std::max(100, 255 - static_cast<int>(gradientPosition * 155));
         const int blueIntensity = std::min(50, static_cast<int>(gradientPosition * 50));
@@ -223,7 +223,7 @@ void Game::Render() {
         SDL_RenderDrawRect(renderer, &edgeRect);
     }
 
-    for (int i = snakeLength - 1; i > 0; i--) {
+    for (int i = snakeLength - 1; i > 1; i--) {
         drawSnakeConnector(i);
     }
 
