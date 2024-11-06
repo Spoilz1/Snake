@@ -6,22 +6,22 @@ bool Game::collisions() {
     const auto& snakeHead = snakeBody[0];  // Reference to the snake's head position
 
     // Check collision with walls (screen boundaries)
-    if (snakeHead.xPos < 0 || snakeHead.xPos >= screen_width || 
-        snakeHead.yPos < 0 || snakeHead.yPos >= screen_height) {
+    if (snakeHead.xPos < -GRIDSIZE || snakeHead.xPos >= screen_width || 
+        snakeHead.yPos < -GRIDSIZE || snakeHead.yPos >= screen_height) {
         return true;  // Collision detected
     }
 
     // Check collision with self (snake body)
     for (int i = 1; i < snakeLength; ++i) {
-        if (std::abs(snakeHead.xPos - snakeBody[i].xPos) <= tolerance &&
-            std::abs(snakeHead.yPos - snakeBody[i].yPos) <= tolerance) {
+        if (std::abs(snakeBody[0].xPos - snakeBody[i].xPos) <= tolerance &&
+            std::abs(snakeBody[0].yPos - snakeBody[i].yPos) <= tolerance) {
             return true;  // Collision detected
         }
     }
 
     // Check collision with apple (food)
-    if (std::abs(snakeHead.xPos - apple.xPos) <= tolerance &&
-        std::abs(snakeHead.yPos - apple.yPos) <= tolerance) {
+    if (std::abs(snakeBody[1].xPos - apple.xPos) <= tolerance &&
+        std::abs(snakeBody[1].yPos - apple.yPos) <= tolerance) {
         score++;  // Increase score upon eating an apple
         playWavInThread("../assets/eat.wav");  // Play eating sound
         addApple();  // Spawn a new apple
