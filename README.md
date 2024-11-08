@@ -39,4 +39,3 @@
 - The build directory should be at the same level as the CMakeLists.txt file
 - CMake will generate the necessary Makefiles based on your system configuration
 - Compiled binaries will be located in the build directory
-- Snake may collide with itself once or twice after first build
