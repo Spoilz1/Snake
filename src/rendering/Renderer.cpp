@@ -173,6 +173,71 @@ void Game::cleanupTextures() {
     texturesInitialized = false;
 }
 
+
+// Snake Eyes
+void Game::drawSnakeEyes(const SDL_Rect& headRect) {
+    // Calculate eye positions based on snake's direction
+    const int eyeSize = GRIDSIZE / 6;  // Size of each eye
+    const int eyeOffset = GRIDSIZE / 4; // Distance from center
+    
+    // Base positions (center of the head)
+    int centerX = headRect.x + headRect.w / 2;
+    int centerY = headRect.y + headRect.h / 2;
+    
+    // Calculate eye positions based on direction
+    int leftEyeX = centerX;
+    int leftEyeY = centerY;
+    int rightEyeX = centerX;
+    int rightEyeY = centerY;
+    
+    switch(snakeBody[1].direction) {
+        case Direction::UP:
+            leftEyeX -= eyeOffset;
+            rightEyeX += eyeOffset;
+            leftEyeY = rightEyeY = centerY - eyeOffset;
+            break;
+        case Direction::DOWN:
+            leftEyeX -= eyeOffset;
+            rightEyeX += eyeOffset;
+            leftEyeY = rightEyeY = centerY + eyeOffset;
+            break;
+        case Direction::LEFT:
+            leftEyeX = rightEyeX = centerX - eyeOffset;
+            leftEyeY -= eyeOffset;
+            rightEyeY += eyeOffset;
+            break;
+        case Direction::RIGHT:
+            leftEyeX = rightEyeX = centerX + eyeOffset;
+            leftEyeY -= eyeOffset;
+            rightEyeY += eyeOffset;
+            break;
+    }
+    
+    // Draw the white part of the eyes
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    for(int dy = -eyeSize; dy <= eyeSize; dy++) {
+        for(int dx = -eyeSize; dx <= eyeSize; dx++) {
+            if(dx*dx + dy*dy <= eyeSize*eyeSize) {
+                SDL_RenderDrawPoint(renderer, leftEyeX + dx, leftEyeY + dy);
+                SDL_RenderDrawPoint(renderer, rightEyeX + dx, rightEyeY + dy);
+            }
+        }
+    }
+    
+    // Draw the pupils (black part of the eyes)
+    const int pupilSize = eyeSize / 2;
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    for(int dy = -pupilSize; dy <= pupilSize; dy++) {
+        for(int dx = -pupilSize; dx <= pupilSize; dx++) {
+            if(dx*dx + dy*dy <= pupilSize*pupilSize) {
+                SDL_RenderDrawPoint(renderer, leftEyeX + dx, leftEyeY + dy);
+                SDL_RenderDrawPoint(renderer, rightEyeX + dx, rightEyeY + dy);
+            }
+        }
+    }
+}
+
+
 // Update the Render function to use textures
 void Game::Render() {
     if (gameOver) {
@@ -224,6 +289,8 @@ void Game::Render() {
         SDL_RenderDrawRect(renderer, &edgeRect);
     }
 
+    drawSnakeEyes(snakeBody[1]);
+
     for (int i = snakeLength - 1; i > 1; i--) {
         drawSnakeConnector(i);
     }
@@ -231,3 +298,4 @@ void Game::Render() {
     updateWindowTitle();
     SDL_RenderPresent(renderer);
 }
+
