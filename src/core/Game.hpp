@@ -203,14 +203,14 @@ private:
     Button playAgainButton;
     Button quitButton;
     food apple;
-    SDL_Rect squares[400];
-    snake snakeBody[400];
+    SDL_Rect squares[5000];
+    snake snakeBody[5000];
     AppleGradient currentGradient;
     
     // Window dimensions
     int screen_width = 1200;
     int screen_height = 800;
-    const int GRIDSIZE = 50;
+    const int GRIDSIZE = 20;
     int total_grids = (screen_width / GRIDSIZE) * (screen_height / GRIDSIZE);
     
     // Game logic functions
