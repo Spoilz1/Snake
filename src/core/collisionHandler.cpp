@@ -2,7 +2,7 @@
 #include <cmath>  
 
 bool Game::collisions() { 
-    const float tolerance = GRIDSIZE / 5.0f;  // Allowable margin for collision detection
+    const float tolerance = GRIDSIZE / 1.0f;  // Allowable margin for collision detection
     const auto& snakeHead = snakeBody[0];  // Reference to the snake's head position
 
     // Check collision with walls (screen boundaries)
