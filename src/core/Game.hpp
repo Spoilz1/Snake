@@ -174,7 +174,7 @@ private:
     Uint32 lastTime;
     float deltaTime;
     const float TARGET_DELTA_TIME = 1.0f / 60.0f;  
-    const float BASE_MOVE_SPEED = 400.0f;          
+    const float BASE_MOVE_SPEED = 200.0f;          
     
 
     // Game state
