@@ -289,7 +289,7 @@ void Game::Render() {
         SDL_RenderDrawRect(renderer, &edgeRect);
     }
 
-    drawSnakeEyes(snakeBody[1]);
+    drawSnakeEyes(squares[1]);
 
     for (int i = snakeLength - 1; i > 1; i--) {
         drawSnakeConnector(i);
