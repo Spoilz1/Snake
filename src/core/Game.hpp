@@ -125,6 +125,8 @@ public:
     
 private:  
 
+    void drawSnakeEyes(const SDL_Rect& headRect);
+
     SDL_Texture* appleTexture = nullptr;
     SDL_Texture* stemAndLeafTexture = nullptr;
     bool texturesInitialized = false;
