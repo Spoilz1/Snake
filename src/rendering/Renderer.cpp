@@ -251,6 +251,7 @@ void Game::Render() {
 
     if (snakeLength == 1) {
         addApple();
+        addSnake();
     }
 
     // Initialize textures if needed
